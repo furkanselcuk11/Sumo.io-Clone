@@ -19,6 +19,7 @@ public class PlayerTrigger : MonoBehaviour
         {
             Debug.Log("Player - Enemy");
             collision.gameObject.GetComponent<BasicEnemyAI>().enabled = false;
+            collision.gameObject.GetComponent<EnemyIsPlayerShot>().playerShot = true;
             Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
             enemyRb.AddForce(this.transform.forward * bumpAmonut, ForceMode.Impulse);
             collision.gameObject.GetComponent<BasicEnemyAI>().enabled = true;

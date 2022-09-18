@@ -21,7 +21,7 @@ public class EnemyTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("OutOfPlay"))
         {
             AudioController.audioControllerInstance.Play("DiedSound"); // Karakter yandýðýnda ses çalýþýr
-            GameManager.gamemanagerInstance.contestant.Remove(this.gameObject.transform);
+            GameManager.gamemanagerInstance.contestant.Remove(this.gameObject.transform);            
             Destroy(this.gameObject,0.5f);
         }
     }
@@ -31,9 +31,17 @@ public class EnemyTrigger : MonoBehaviour
         {
             Debug.Log(this.gameObject.name + " -> " + other.gameObject.name);
             other.gameObject.GetComponent<BasicEnemyAI>().enabled = false;
+            other.gameObject.GetComponent<EnemyIsPlayerShot>().playerShot = false;
             Rigidbody enemyRb = other.gameObject.GetComponent<Rigidbody>();
             enemyRb.AddForce(this.transform.forward * bumpAmonut, ForceMode.Impulse);
             other.gameObject.GetComponent<BasicEnemyAI>().enabled = true;
+        }
+    }
+    private void OnDisable()
+    {
+        if (this.gameObject.GetComponent<EnemyIsPlayerShot>().playerShot)
+        {
+            UIController.uiControllerInstance.score += 1000;
         }
     }
 }

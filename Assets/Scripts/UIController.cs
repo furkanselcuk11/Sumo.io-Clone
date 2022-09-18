@@ -6,10 +6,13 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public static UIController uiControllerInstance;   // Diðer scriptler için eriþim saðlar  
-    [Header("Texts")]
+    [Header("Panel")]
     [Space]
     [SerializeField] private GameObject gameFinishPanel;
-
+    [Space]
+    [Header("Score")]
+    public int score;
+    [Space]
     [Header("Texts")]
     [SerializeField] private TextMeshProUGUI _timerTxt;
     [SerializeField] private TextMeshProUGUI _gameStartTimerTxt;
@@ -37,10 +40,13 @@ public class UIController : MonoBehaviour
     void Start()
     {
         gameFinishPanel.SetActive(false);
+        score = 0;
+        _scoreTxt.text = score.ToString();
     }
     void Update()
     {
         _contestantTxt.text = (GameManager.gamemanagerInstance.contestant.Count+1).ToString();
+        _scoreTxt.text = score.ToString();
     }
     public void GameFinishPanel()
     {
