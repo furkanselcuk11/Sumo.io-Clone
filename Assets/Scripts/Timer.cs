@@ -20,19 +20,23 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        if (gameStartTimerIsRunning && gameStartTimeRemaining > 1)
+        if (gameStartTimerIsRunning && !GameManager.gamemanagerInstance.isStartGame)
         {
-            // Oyuna baþlamak için 3 saniye beklenir
-            gameStartTimeRemaining -= Time.deltaTime;
-            float seconds = Mathf.FloorToInt(gameStartTimeRemaining % 60);
-            UIController.uiControllerInstance.gameStartTimerTxt.text = seconds.ToString();
+            if (gameStartTimeRemaining > 1)
+            {
+                // Oyuna baþlamak için 3 saniye beklenir
+                gameStartTimeRemaining -= Time.deltaTime;
+                float seconds = Mathf.FloorToInt(gameStartTimeRemaining % 60);
+                UIController.uiControllerInstance.gameStartTimerTxt.text = seconds.ToString();
+            }
+            else
+            {
+                gameStartTimeRemaining = 0;
+                gameStartTimerIsRunning = false;
+                OnTimerGameStart();
+            }
         }
-        else
-        {
-            gameStartTimeRemaining = 0;
-            gameStartTimerIsRunning = false;
-            OnTimerGameStart();            
-        }
+        
 
         if (timerIsRunning && !GameManager.gamemanagerInstance.isFinish && GameManager.gamemanagerInstance.isStartGame)
         {

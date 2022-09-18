@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gamemanagerInstance;  // Diðer scriptler için eriþim saðlar
+    [SerializeField] private GameObject contestantNode;
+    public List<Transform> contestant = new List<Transform>();
     public int contestantCount;    // Oyuncu Sayýsý
     [SerializeField] private GameObject joystick;
     public bool isFinish;   // Oyunsonu
@@ -15,6 +17,10 @@ public class GameManager : MonoBehaviour
         if (gamemanagerInstance == null)
         {
             gamemanagerInstance = this;
+        }
+        for (int i = 0; i < contestantNode.transform.childCount; i++)
+        {
+            contestant.Add(contestantNode.transform.GetChild(i).gameObject.transform);
         }
     }
     private void OnEnable()
@@ -31,15 +37,15 @@ public class GameManager : MonoBehaviour
     {        
         isStartGame = false;    // SAhne açýldýðýnda oyun baþlamasýn
     }
-    void StartGame()
+    public void StartGame()
     {
-        AudioController.audioControllerInstance.Play("StartSound"); // Oyun baþladýðýnda ses çalýþýr
+        AudioController.audioControllerInstance.Play("StartSound"); // Oyun baþladýðýnda ses çalýþýr        
         isStartGame = true;
         UIController.uiControllerInstance.gameStartTimerTxt.gameObject.SetActive(false);
     }
     void Update()
     {
-        if (contestantCount <= 1)
+        if (contestant.Count < 1)
         {
             FinishGame();   // Sahnede tek kiþi kalmýþssa oyunu bitir
         }
@@ -56,9 +62,9 @@ public class GameManager : MonoBehaviour
     }
     public void FinishGame()
     {
-        joystick.SetActive(false);  // joystick pasif hale gelir
-        isFinish = true; // isFinish oyun snu aktif olur
         AudioController.audioControllerInstance.Play("FinishSound"); // Oyun sonu ses çalýþýr
+        joystick.SetActive(false);  // joystick pasif hale gelir
+        isFinish = true; // isFinish oyun snu aktif olur        
         UIController.uiControllerInstance.GameFinishPanel(); // FinishGame paneli açýlýr ve oyunu yeniden baþlatýlýr
     }
 }

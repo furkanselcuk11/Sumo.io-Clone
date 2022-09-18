@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
     }
     void Update()
     {
-        _contestantTxt.text = GameManager.gamemanagerInstance.contestantCount.ToString();
+        _contestantTxt.text = (GameManager.gamemanagerInstance.contestant.Count+1).ToString();
     }
     public void GameFinishPanel()
     {
