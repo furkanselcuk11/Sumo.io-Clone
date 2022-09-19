@@ -58,8 +58,8 @@ public class Timer : MonoBehaviour
     private void UpdateTimer(float currentTime)
     {
         currentTime += 1;
-        float minutes = Mathf.FloorToInt(currentTime / 60);
-        float seconds = Mathf.FloorToInt(currentTime % 60);
-        UIController.uiControllerInstance.timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        float minutes = Mathf.FloorToInt(currentTime / 60); // Dakikaya çevirir
+        float seconds = Mathf.FloorToInt(currentTime % 60); // saniyeye çevirir
+        UIController.uiControllerInstance.timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Ekranda dakike ve saniye biçimine gösterir
     }
 }

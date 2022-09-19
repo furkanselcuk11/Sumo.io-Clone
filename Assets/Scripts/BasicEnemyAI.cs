@@ -7,19 +7,19 @@ public class BasicEnemyAI : MonoBehaviour
 {
     private NavMeshAgent agent;    
     [SerializeField] private Transform player;
-    [SerializeField] private LayerMask whatIsGround, whatIsPlayer, whatIsEnemy;
+    [SerializeField] private LayerMask whatIsGround, whatIsPlayer, whatIsEnemy; // Layer isimleri
     [Space]
     [Header("Patroling")]
-    [SerializeField] private Vector3 walkPoint; // Y�r�y�� noktas�
-    public bool walkPointSet;// Y�r�� noktas� varm� yokmu
-    [SerializeField] private float walkPointRange;
+    [SerializeField] private Vector3 walkPoint; // yürüyüş noktalrı
+    public bool walkPointSet;// Yrüyüş noktası var mıyokmu
+    [SerializeField] private float walkPointRange;  // Yürüyeceği alanı belirler
     [Space]
     [Header("States")]
-    [SerializeField] private float sightRange, enemySightRange; // Görüş ve atak menzil aralığı
-    [SerializeField] private bool playerInSightRange, enemyInSightRange;  // Görüş menzilinde mi yoksa atak menzilinde mi
+    [SerializeField] private float sightRange, enemySightRange; // Player Görüş ve AI görüş menzil aralığı
+    [SerializeField] private bool playerInSightRange, enemyInSightRange;  // Görüş menzilinde ve AI görü menzilinde mi
     [Space]
     [Header("Enemy")]
-    [SerializeField] private float maxDistance;
+    [SerializeField] private float maxDistance; // Maksimum 
     private float currentHitDistance;
     private Vector3 origin;
     private Vector3 direction;
@@ -34,26 +34,27 @@ public class BasicEnemyAI : MonoBehaviour
         
         if (!GameManager.gamemanagerInstance.isFinish && GameManager.gamemanagerInstance.isStartGame)
         {
-            // Oyuncu atak m� yoksa g�r�� alan�nda m� kontrol edilir
+            // AI , Player Görüş veya AI görüş alanında mı kontrol edilir
             EnemySphere();
-            playerInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsPlayer);    // Eğer görüş menzilindeyse True döner
+            playerInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsPlayer);    // Eğer Player görüş menzilindeyse playerInSightRange True döner
 
-            if (!playerInSightRange && !enemyInSightRange) Patroling();   // Sahnde de Random gezer
-            if (playerInSightRange && !enemyInSightRange) ChasePlayer();  // Oyuncuyu takip eder
-            if (enemyInSightRange && !playerInSightRange) ChaseEnemy();  // Oyuncuyu takip eder
-            if (enemyInSightRange && playerInSightRange) Chase();  // Oyuncuyu takip eder
+            if (!playerInSightRange && !enemyInSightRange) Patroling();   // Sahnde de Random gezer - ( Eğer Player veya AI karakter görmediyse)
+            if (playerInSightRange && !enemyInSightRange) ChasePlayer();  // Oyuncuyu takip eder - ( Eğer Player görmüş ama AI karakter görmediyse)
+            if (enemyInSightRange && !playerInSightRange) ChaseEnemy();  // AI, diğer AI'yı takip eder - ( Eğer Player görmediyse ve AI karakter gördüyse)
+            if (enemyInSightRange && playerInSightRange) Chase();  // Oyuncuyu veya AI'yı takip eder - ( Eğer Player ve AI karakter gördüyse)
         }        
     }
     private void EnemySphere()
     {
-        origin = this.transform.position;
+        // AI görüş alanında Her hangi bir AI var mı RaycastHit ile kontrol edilir ve varsa enemyInSightRange true döner
+        origin = this.transform.position;   
         direction = this.transform.forward;
         RaycastHit hit;
         if(Physics.SphereCast(origin,enemySightRange,direction,out hit, maxDistance, whatIsEnemy, QueryTriggerInteraction.UseGlobal))
         {
             this.currentHitObject = hit.transform.gameObject;
             currentHitDistance = maxDistance;
-            enemyInSightRange = true;            
+            enemyInSightRange = true;  // AI görüş alanında true olur          
         }
         else
         {
@@ -77,43 +78,43 @@ public class BasicEnemyAI : MonoBehaviour
     }
     private void Chase()
     {
+        // Oyuncuyu veya AI'yı takip eder - ( Eğer Player ve AI karakter gördüyse) En yakın olanı takipr eder
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, sightRange))
         {            
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
+                // Eğer görüş alanındna AI varsa
                 Debug.DrawLine(this.transform.position, hit.point, Color.red);
-                float distancePlayer = Vector3.Distance(this.transform.position, player.position);
-                float distanceEnemy = Vector3.Distance(this.transform.position, hit.collider.gameObject.transform.position);
+                float distancePlayer = Vector3.Distance(this.transform.position, player.position);  // Karakterin Player ile arasındaki mesafe
+                float distanceEnemy = Vector3.Distance(this.transform.position, hit.collider.gameObject.transform.position); // Karakterin AI ile arasındaki mesafe
 
                 if (distancePlayer < distanceEnemy)
                 {
-                    // Oyuncuyu takip et
+                    // Player daha yakınsa - Oyuncuyu takip et
                     this.agent.SetDestination(player.position);
                 }
                 else if(distancePlayer > distanceEnemy)
                 {
-                    // Enemy takip et
+                    // AI daha yakınsa - Enemy takip et
                     this.agent.SetDestination(hit.collider.gameObject.transform.position);
                 }
                 else if(distancePlayer == distanceEnemy)
                 {
-                    // Oyunucyu takip et
+                    // Eğer eşitse - Oyunucyu takip et
                     this.agent.SetDestination(player.position);
                 }                
-            }
-            else
-            {
-                Debug.DrawLine(this.transform.position, hit.point, Color.green);
             }
         }
     }
     private void ChasePlayer()
     {
-        this.agent.SetDestination(player.position);
+        // Eğer görüş alanında player varsa player takip eder
+        this.agent.SetDestination(player.position); // AI SetDestination özelliği ile takip eder
     }
     private void ChaseEnemy()
     {
+        // Eğer görüş alanında AI varsa AI'yı takip eder
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, sightRange))
         {
@@ -130,20 +131,21 @@ public class BasicEnemyAI : MonoBehaviour
     }
     private void SearchWalkPoint()
     {
-        // X ve Z eksenlerinde walkPointRange aral���nda random nokta belirle
+        // X ve Z eksenlerinde walkPointRange aralığında random nokta belirle
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(this.transform.position.x + randomX, this.transform.position.y, this.transform.position.z + randomZ);
+        
+        walkPoint = new Vector3(randomX, this.transform.position.y,randomZ); // Random nokta oluşturu ve oraya hareket eder
 
         if (Physics.Raycast(walkPoint, -this.transform.up, 2f, whatIsGround))
         {
-            walkPointSet = true;
+            walkPointSet = true;    // Yürüş noktası aktif hala gelir
         }
     }
 
     private void OnDrawGizmosSelected()
     {        
+        // Gizmoz ekranda nasıl gösterleceği ve kapladığı alanları gösterir
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(this.transform.position, sightRange);
         Gizmos.color = Color.red;

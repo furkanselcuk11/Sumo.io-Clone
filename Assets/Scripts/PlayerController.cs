@@ -25,11 +25,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isRunnig)
         {
-            anim.SetBool("isRunning", true);
+            anim.SetBool("isRunning", true);    // Run animasyonu oynar
         }
         else
         {
-            anim.SetBool("isRunning", false);
+            anim.SetBool("isRunning", false);   // bekleme animasyonu oynar
         }
     }
     private void FixedUpdate()

@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.26, y: 1, z: 5.18}
+  m_LocalPosition: {x: -4, y: 1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &2363840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -2026,7 +2026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230358629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9, y: 1, z: -8.04}
+  m_LocalPosition: {x: -4, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &230358634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2097,7 +2097,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -4357,7 +4357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524011577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.47, y: 1, z: 4.78}
+  m_LocalPosition: {x: 4, y: 1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4403,7 +4403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &524011582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4428,7 +4428,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -6466,7 +6466,7 @@ Transform:
   m_GameObject: {fileID: 727260478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.6, z: 0}
-  m_LocalScale: {x: 26, y: 2, z: 26}
+  m_LocalScale: {x: 25, y: 2, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 603321199}
@@ -7819,7 +7819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906480659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.32, y: 1, z: -1.92}
+  m_LocalPosition: {x: -8, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7865,7 +7865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &906480664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7890,7 +7890,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -13440,7 +13440,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -13527,7 +13527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458361016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.47, y: 1, z: -1.92}
+  m_LocalPosition: {x: 10, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13548,7 +13548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &1458361024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14002,7 +14002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519975352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 1, z: -8.04}
+  m_LocalPosition: {x: 4, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14035,7 +14035,7 @@ MonoBehaviour:
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  walkPointRange: 5
+  walkPointRange: 9
   sightRange: 3
   enemySightRange: 3
   playerInSightRange: 0
@@ -14076,7 +14076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e51766c77a657142a0b0ac257a7848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 5
+  bumpAmonut: 1
 --- !u!114 &1519975362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20396,7 +20396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c539644c4b00cf46b7cac5bf1a50c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 4
+  _movementSpeed: 5
   _rotationSpeed: 500
   joystick: {fileID: 2056942950}
 --- !u!54 &8384998768831482760
@@ -20427,7 +20427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb90022673c62ae40b24896e87a5b459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpAmonut: 10
+  bumpAmonut: 5
 --- !u!4 &8417722311791149948
 Transform:
   m_ObjectHideFlags: 0

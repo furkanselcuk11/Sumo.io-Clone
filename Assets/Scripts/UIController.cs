@@ -45,8 +45,9 @@ public class UIController : MonoBehaviour
     }
     void Update()
     {
-        _contestantTxt.text = (GameManager.gamemanagerInstance.contestant.Count+1).ToString();
-        _scoreTxt.text = score.ToString();
+        _contestantTxt.text = (GameManager.gamemanagerInstance.contestant.Count+1).ToString(); 
+        // Oyundaki karakter sayýsýný contestant listesinden çeker ve üzerine player karakterini ekleyip ekranda yazdýrýr
+        _scoreTxt.text = score.ToString();  // Skor yazýsný güncele
     }
     public void GameFinishPanel()
     {

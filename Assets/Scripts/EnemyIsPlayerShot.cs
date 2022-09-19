@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyIsPlayerShot : MonoBehaviour
 {
-    public bool playerShot;
+    public bool playerShot; // AI oyunucusuna player vurdumu
     void Start()
     {
-        this.playerShot = false;
+        this.playerShot = false;    // Baþlangýçta false olarak baþlar
     }   
 }
